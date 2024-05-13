@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置页面</title>
+</head>
+<body>
+    <h1>设置页面</h1>
+    <form id="jsonForm">
+        <label for="openai_api_key">OpenAI API Key:</label>
+        <input type="text" id="openai_api_key" name="openai_api_key"><br>
+
+        <label for="openai_api_base_url">OpenAI API Base URL:</label>
+        <input type="text" id="openai_api_base_url" name="openai_api_base_url"><br>
+
+        <label for="chat_model">聊天模型:</label>
+        <select id="chat_model" name="chat_model">
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+            <option value="gpt-3.5-turbo-1106">gpt-3.5-turbo-1106</option>
+            <option value="gpt-3.5-turbo-0125">gpt-3.5-turbo-0125</option>
+            <option value="gpt-3.5-turbo-0301">gpt-3.5-turbo-0301</option>
+            <option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</option>
+            <option value="gpt-4">gpt-4</option>
+            <option value="gpt-4-0613">gpt-4-0613</option>
+            <option value="gpt-4-turbo-preview">gpt-4-turbo-preview</option>
+            <option value="gpt-4-0125-preview">gpt-4-0125-preview</option>
+            <option value="gpt-4-1106-preview">gpt-4-1106-preview</option>
+            <option value="gpt-4-turbo">gpt-4-turbo</option>
+            <option value="input">其他（请输入）</option>
+        </select><br>
+
+        <label for="openai_voice_model">声音:</label>
+        <select id="openai_voice_model" name="openai_voice_model">
+            <option value="alloy">alloy</option>
+            <option value="echo">echo</option>
+            <option value="fable">fable</option>
+            <option value="onyx">onyx</option>
+            <option value="nova">nova</option>
+            <option value="shimmer">shimmer</option>
+        </select><br>
+
+        <label for="whisper_locality_model">Whisper模型:</label>
+        <select id="whisper_locality_model" name="whisper_locality_model">
+            <option value="tiny">tiny</option>
+            <option value="base">base</option>
+            <option value="small">small</option>
+            <option value="medium">medium</option>
+            <option value="large">large</option>
+            <option value="large-v2">large-v2</option>
+            <option value="large-v3">large-v3</option>
+        </select><br>
+
+        <label>Whisper配置:</label><br>
+        <input type="radio" id="cuda_float16" name="whisper_device_compute" value='{"whisper_device":"cuda","whisper_compute_type":"float16"}'>
+        <label for="cuda_float16">CUDA - Float16</label><br>
+        <input type="radio" id="cuda_int8_float16" name="whisper_device_compute" value='{"whisper_device":"cuda","whisper_compute_type":"int8_float16"}'>
+        <label for="cuda_int8_float16">CUDA - Int8 Float16</label><br>
+        <input type="radio" id="cpu_int8" name="whisper_device_compute" value='{"whisper_device":"cpu","whisper_compute_type":"int8"}'>
+        <label for="cpu_int8">CPU - Int8</label><br>
+
+        <li>选择更高版本的Whisper模型可以获得更好的转录质量，但速度会更慢。</li>
+        <li>如果你的设备支持CUDA，建议选择CUDA作为Whisper设备，以获得更快的处理速度。</li>
+        <li>对于Chat Model，gpt-4系列模型通常比gpt-3.5系列模型更强大，但速度也会更慢，并且费用更高。</li>
+        <li>OpenAI Voice Model用于将文本转换为语音，不同的模型有不同的声音特点，可以根据自己的喜好选择。</li>
+
+        <label for="init_prompt">提示词:</label><br>
+        <textarea id="init_prompt" name="init_prompt" rows="5" placeholder="如果为空，则会选择默认提示词"></textarea><br>
+
+        <button type="submit">提交</button><br>
+        <div id="message"></div>
+    </form>
+
+
+    
+    <script>
+        document.getElementById('jsonForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = '正在设置';
+    
+            const formData = new FormData(this);
+            const jsonData = {};
+    
+            for (const [key, value] of formData.entries()) {
+                jsonData[key] = value;
+            }
+
+            jsonData["open_again"] = false;
+    
+            fetch('http://localhost:4444', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('成功:', data);
+                document.getElementById('message').textContent = '设置成功';
+            })
+            .catch((error) => {
+                console.error('错误:', error);
+                const messageDiv = document.getElementById('message');
+                messageDiv.textContent = '设置失败';
+            });
+        });
+    </script>
+</body>
+</html>
