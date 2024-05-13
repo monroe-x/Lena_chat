@@ -8,7 +8,7 @@
 - **Streaming Transmission**: Offers fluid and uninterrupted voice streaming.
 
 ### Installation
-1. Download the release package from the [Releases](#) section.
+1. Download the release package from the [Releases](https://github.com/monroe-x/Lena_chat/releases/tag/Lena_chat) section.
 2. Extract the files and double-click the `Lena_chat.exe` to run the application.
 
 Enjoy communicating with Lena_chat, your faster and more reliable voice chatbot!
@@ -21,7 +21,7 @@ Enjoy communicating with Lena_chat, your faster and more reliable voice chatbot!
 - **流式传输**：提供流畅且不间断的语音流。
 
 ### 安装指南
-1. 从[发布](#)部分下载发行版压缩包。
+1. 从[发布](https://github.com/monroe-x/Lena_chat/releases/tag/Lena_chat)部分下载发行版压缩包。
 2. 解压文件并双击 `Lena_chat.exe` 运行程序。
 
 享受与 Lena_chat 的沟通，您的速度更快、更可靠的语音聊天机器人！
