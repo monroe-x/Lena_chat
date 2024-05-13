@@ -1,7 +1,5 @@
 # Lena_chat
 
-## English Version
-
 **Lena_chat** is an advanced voice chatbot that stands out for its exceptional speed and quality in voice synthesis. Leveraging the power of OpenAI's API and the cutting-edge Faster-Whisper technology, Lena_chat delivers a more efficient and fluid experience through streaming.
 
 ### Features
@@ -14,8 +12,6 @@
 2. Extract the files and double-click the `Lena_chat.exe` to run the application.
 
 Enjoy communicating with Lena_chat, your faster and more reliable voice chatbot!
-
-## 中文版本
 
 **Lena_chat** 是一个先进的语音聊天机器人，以其在语音合成方面的卓越速度和质量脱颖而出。通过利用 OpenAI 的 API 和最先进的 Faster-Whisper 技术，Lena_chat 通过流式传输提供更高效、更流畅的体验。
 
